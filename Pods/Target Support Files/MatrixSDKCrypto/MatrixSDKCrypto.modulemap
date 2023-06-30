@@ -1,0 +1,6 @@
+framework module MatrixSDKCrypto {
+  umbrella header "MatrixSDKCrypto-umbrella.h"
+
+  export *
+  module * { export * }
+}
