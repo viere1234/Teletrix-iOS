@@ -7,19 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D3864E882A4F170400B933E9 /* TeletrixService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3864E872A4F170400B933E9 /* TeletrixService.swift */; };
+		D3864E8A2A4F1CA000B933E9 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3864E892A4F1CA000B933E9 /* LoginView.swift */; };
 		D3A166422A4F135800B47BBF /* TeletrixApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A166412A4F135800B47BBF /* TeletrixApp.swift */; };
 		D3A166442A4F135800B47BBF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A166432A4F135800B47BBF /* ContentView.swift */; };
 		D3A166462A4F135A00B47BBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3A166452A4F135A00B47BBF /* Assets.xcassets */; };
-		D3A166492A4F135A00B47BBF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3A166482A4F135A00B47BBF /* Preview Assets.xcassets */; };
 		D3A166512A4F143700B47BBF /* MatrixRustSDK in Frameworks */ = {isa = PBXBuildFile; productRef = D3A166502A4F143700B47BBF /* MatrixRustSDK */; };
+		D3BC069B2A50618F004F2C43 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = D3BC069A2A50618F004F2C43 /* KeychainAccess */; };
+		D3BC069E2A5064E7004F2C43 /* Session+Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3BC069D2A5064E7004F2C43 /* Session+Keychain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D3864E872A4F170400B933E9 /* TeletrixService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeletrixService.swift; sourceTree = "<group>"; };
+		D3864E892A4F1CA000B933E9 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		D3A1663E2A4F135800B47BBF /* Teletrix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Teletrix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3A166412A4F135800B47BBF /* TeletrixApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeletrixApp.swift; sourceTree = "<group>"; };
 		D3A166432A4F135800B47BBF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D3A166452A4F135A00B47BBF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D3A166482A4F135A00B47BBF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D3BC069D2A5064E7004F2C43 /* Session+Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+Keychain.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3BC069B2A50618F004F2C43 /* KeychainAccess in Frameworks */,
 				D3A166512A4F143700B47BBF /* MatrixRustSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -34,10 +40,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D3864E852A4F168700B933E9 /* TeletrixKit */ = {
+			isa = PBXGroup;
+			children = (
+				D3864E872A4F170400B933E9 /* TeletrixService.swift */,
+				D3BC069C2A5064C4004F2C43 /* Extensions */,
+			);
+			path = TeletrixKit;
+			sourceTree = "<group>";
+		};
+		D3864E862A4F16D500B933E9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D3A166452A4F135A00B47BBF /* Assets.xcassets */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		D3A166352A4F135800B47BBF = {
 			isa = PBXGroup;
 			children = (
 				D3A166402A4F135800B47BBF /* Teletrix */,
+				D3864E862A4F16D500B933E9 /* Supporting Files */,
 				D3A1663F2A4F135800B47BBF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,20 +77,28 @@
 		D3A166402A4F135800B47BBF /* Teletrix */ = {
 			isa = PBXGroup;
 			children = (
+				D3BC06982A505239004F2C43 /* Authentication */,
 				D3A166412A4F135800B47BBF /* TeletrixApp.swift */,
 				D3A166432A4F135800B47BBF /* ContentView.swift */,
-				D3A166452A4F135A00B47BBF /* Assets.xcassets */,
-				D3A166472A4F135A00B47BBF /* Preview Content */,
+				D3864E852A4F168700B933E9 /* TeletrixKit */,
 			);
 			path = Teletrix;
 			sourceTree = "<group>";
 		};
-		D3A166472A4F135A00B47BBF /* Preview Content */ = {
+		D3BC06982A505239004F2C43 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				D3A166482A4F135A00B47BBF /* Preview Assets.xcassets */,
+				D3864E892A4F1CA000B933E9 /* LoginView.swift */,
 			);
-			path = "Preview Content";
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		D3BC069C2A5064C4004F2C43 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D3BC069D2A5064E7004F2C43 /* Session+Keychain.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -87,6 +119,7 @@
 			name = Teletrix;
 			packageProductDependencies = (
 				D3A166502A4F143700B47BBF /* MatrixRustSDK */,
+				D3BC069A2A50618F004F2C43 /* KeychainAccess */,
 			);
 			productName = Teletrix;
 			productReference = D3A1663E2A4F135800B47BBF /* Teletrix.app */;
@@ -118,6 +151,7 @@
 			mainGroup = D3A166352A4F135800B47BBF;
 			packageReferences = (
 				D3A1664F2A4F143700B47BBF /* XCRemoteSwiftPackageReference "matrix-rust-components-swift" */,
+				D3BC06992A50618F004F2C43 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = D3A1663F2A4F135800B47BBF /* Products */;
 			projectDirPath = "";
@@ -133,7 +167,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3A166492A4F135A00B47BBF /* Preview Assets.xcassets in Resources */,
 				D3A166462A4F135A00B47BBF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,7 +178,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3864E882A4F170400B933E9 /* TeletrixService.swift in Sources */,
 				D3A166442A4F135800B47BBF /* ContentView.swift in Sources */,
+				D3BC069E2A5064E7004F2C43 /* Session+Keychain.swift in Sources */,
+				D3864E8A2A4F1CA000B933E9 /* LoginView.swift in Sources */,
 				D3A166422A4F135800B47BBF /* TeletrixApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,7 +310,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Teletrix/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = DW8PG2JYW5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -303,7 +339,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Teletrix/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = DW8PG2JYW5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -357,6 +393,14 @@
 				kind = branch;
 			};
 		};
+		D3BC06992A50618F004F2C43 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -364,6 +408,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = D3A1664F2A4F143700B47BBF /* XCRemoteSwiftPackageReference "matrix-rust-components-swift" */;
 			productName = MatrixRustSDK;
+		};
+		D3BC069A2A50618F004F2C43 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D3BC06992A50618F004F2C43 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

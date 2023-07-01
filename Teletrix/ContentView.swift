@@ -8,14 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject private var teletrix: TeletrixService
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        switch teletrix.loginState {
+        case .loggedIn(userId: let userId):
+            EmptyView()
+            
+        case .loggedOut:
+            LoginView()
+            
+        case .authenticating:
+            EmptyView()
+            
+        case .failure(let error):
+            EmptyView()
         }
-        .padding()
     }
 }
 
