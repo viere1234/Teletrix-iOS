@@ -8,21 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject private var teletrix: TeletrixService
+    @EnvironmentObject private var store: AccountStore
     
     var body: some View {
-        switch teletrix.loginState {
+        switch store.loginState {
         case .loggedIn(userId: let userId):
-            EmptyView()
+            Text(userId)
             
         case .loggedOut:
             LoginView()
             
         case .authenticating:
-            EmptyView()
+            ProgressView()
             
         case .failure(let error):
-            EmptyView()
+            Text(error.localizedDescription)
         }
     }
 }

@@ -8,13 +8,20 @@
 import SwiftUI
 
 struct LoginView: View {
-    @EnvironmentObject private var teletrix: TeletrixService
+    enum Field: Hashable {
+        case server
+        case username
+        case password
+    }
+    
+    @EnvironmentObject private var store: AccountStore
     
     @State private var username = ""
     @State private var password = ""
     @State private var server = "matrix.org"
     
-    @State private var showingEditServerView = false
+    @State private var showingRegisterView = false
+    @FocusState private var focused: Field?
     
     var body: some View {
         VStack() {
@@ -27,12 +34,14 @@ struct LoginView: View {
             
             Divider()
             
-            
+            accountField
             
             Spacer()
         }
         .frame(width: UIScreen.main.bounds.width * 0.9)
-        .sheet(isPresented: $showingEditServerView) { EditServerView($server) }
+        .sheet(isPresented: $showingRegisterView) {
+            SafariView(url: URL(string: "https://app.element.io/#/register")!)
+        }
     }
     
     var serverField: some View {
@@ -44,101 +53,54 @@ struct LoginView: View {
                 Spacer()
             }
             
-            HStack {
-                Text(server)
-                
-                Spacer()
-                
-                Button { showingEditServerView.toggle() } label: {
-                    Text("Edit")
-                }
-
-            }
+            TextField("matrix.org", text: $server)
+                .focused($focused, equals: .server)
+                .padding(10)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(
+                            (focused == .server ? .yellow : Color(red: 209/255, green: 209/255, blue: 213/255)),
+                            lineWidth: (focused == .server ? 2 : 1)))
         }
     }
-}
-
-struct EditServerView: View {
     
-    @EnvironmentObject private var teletrix: TeletrixService
-    @Environment(\.dismiss) private var dismiss
-    @State private var editServer: String
-    @State private var loading = false
-    @Binding private var server: String
-    @FocusState private var focused: Bool
-    
-    init(_ server: Binding<String>) {
-        self._server = server
-        self._editServer = State(wrappedValue: server.wrappedValue)
-    }
-    
-    var body: some View {
-        NavigationView {
-            VStack {
-                Image(systemName: "server.rack")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: UIScreen.main.bounds.width * 0.15)
-                    .padding(.bottom)
-                
-                Text("Connect to homeserver")
-                    .font(.title2)
-                    .bold()
-                
-                Text("What is the address of your server?")
-                    .foregroundColor(.gray)
-                    .padding(.bottom)
-                
-                VStack {
-                    TextField("matrix.org", text: $editServer)
-                        .focused($focused, equals: true)
-                        .padding(10)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(
-                                    (focused ? .yellow : Color(red: 209/255, green: 209/255, blue: 213/255)),
-                                    lineWidth: (focused ? 2 : 1))
-                                )
-                    
-                    Button {
-                        self.loading = true
-                        Task {
-                            do {
-                                try await teletrix.configureHomeserver(server: editServer)
-                                self.server = self.editServer
-                                self.dismiss()
-                            } catch {
-                                print(error.localizedDescription)
-                            }
-                        }
-                        self.loading = false
-                    } label: {
-                        HStack {
-                            Spacer()
-                            Text("Continue")
-                                .padding(.vertical, 10)
-                                .foregroundColor(Color.white)
-                                .bold()
-                            Spacer()
-                        }.background(.blue).cornerRadius(5)
-                    }
-
-                }
-                .frame(width: UIScreen.main.bounds.width * 0.9)
-                
-                Spacer()
-                
-                if loading {
-                    ProgressView()
-                }
-                
-                Spacer()
+    var accountField: some View {
+        VStack(spacing: 10) {
+            TextField("Username", text: $username)
+                .focused($focused, equals: .username)
+                .padding(10)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(
+                            (focused == .username ? .yellow : Color(red: 209/255, green: 209/255, blue: 213/255)),
+                            lineWidth: (focused == .username ? 2 : 1)))
+            
+            SecureField("Password", text: $password)
+                .focused($focused, equals: .password)
+                .padding(10)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 5)
+                        .stroke(
+                            (focused == .password ? .yellow : Color(red: 209/255, green: 209/255, blue: 213/255)),
+                            lineWidth: (focused == .password ? 2 : 1)))
+            
+            Button { self.store.login(username: username, password: password, homeserver: server) } label: {
+                HStack {
+                    Spacer()
+                    Text("Login")
+                        .padding(.vertical, 10)
+                        .foregroundColor(Color.white)
+                        .bold()
+                    Spacer()
+                }.background(.blue).cornerRadius(5)
             }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") { dismiss() }
-                }
+            
+            Button {
+                self.showingRegisterView.toggle()
+            } label: {
+                Text("Register")
             }
+
         }
     }
 }

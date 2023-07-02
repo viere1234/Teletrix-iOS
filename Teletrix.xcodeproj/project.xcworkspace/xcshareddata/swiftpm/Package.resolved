@@ -10,12 +10,21 @@
       }
     },
     {
-      "identity" : "matrix-rust-components-swift",
+      "identity" : "matrixsdk",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/matrix-org/matrix-rust-components-swift",
+      "location" : "https://github.com/viere1234/MatrixSDK",
       "state" : {
         "branch" : "main",
-        "revision" : "3efd372b5ccace70c48d982f58385e8f471d5e52"
+        "revision" : "80590ae867c6c9e5308edbd30803a3f553549f3b"
+      }
+    },
+    {
+      "identity" : "swiftybeaver",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwiftyBeaver/SwiftyBeaver",
+      "state" : {
+        "revision" : "1080914828ef1c9ca9cd2bad50667b3d847dabff",
+        "version" : "2.0.0"
       }
     }
   ],
